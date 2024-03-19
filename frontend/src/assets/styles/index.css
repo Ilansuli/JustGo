@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant&family=Montserrat&family=Oswald:wght@700&family=Rubik:wght@700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* Firefox Scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--system-global-scroll-bar-thumb)
+    var(--system-global-scroll-bar-track);
+}
+
+/* Webkit-based browsers (Chrome, Safari) */
+*::-webkit-scrollbar {
+  width: 0.375rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--system-global-scroll-bar-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--system-global-scroll-bar-thumb);
+  border-radius: var(--core-size-micro);
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--system-global-scroll-bar-thumb-hover);
+}
+
+body,
+ul,
+p,
+hr {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-family: var(--system-global-font-family-title);
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  color: var(--system-global-body);
+  background-color: var(--system-global-background);
+  font-family: var(--system-global-font-family);
+  line-height: var(--system-global-line-height);
+}

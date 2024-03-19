@@ -1,0 +1,215 @@
+:root {
+  --system-global-font-family: var(--core-font-family-default);
+  --system-global-font-family-title: var(--core-font-family-title);
+  --system-global-line-height: var(--core-font-line-height-default);
+
+  --system-common-radius-intractable: var(--core-border-radius-large);
+  --system-common-radius-container: var(--core-border-radius-xl);
+  --system-common-border-focused: var(--core-border-medium);
+
+  --system-common-height-default: var(--core-size-xxl);
+  --system-common-height-condensed: var(--core-size-xl);
+  --system-common-height-small: var(--core-size-large);
+  --system-common-size-icon: var(--core-size-medium);
+  --system-common-sizeIcon-small: var(--core-size-smaller);
+
+  --system-cursor-intractable: var(--core-cursor-pointer);
+  --system-cursor-link: var(--core-cursor-pointer);
+  --system-cursor-disabled: var(--core-cursor-not-allowed);
+
+  --system-common-padding: var(--core-spacing-default);
+  --system-common-padding-small: var(--core-spacing-xxs);
+  --system-common-gap: var(--core-spacing-xxs);
+  --system-common-gap-small: var(--core-spacing-mini);
+
+  --system-opacity-disabled: var(--core-opacity-250);
+
+  --system-container-blur: var(--core-blur-20);
+  /* Tabs */
+  --component-tab-selected: rgba(195, 104, 0, 1);
+
+  /* FloatingActionButton */
+  --component-fab-primary: var(--component-button-primary);
+  --component-fab-primary-hover: rgba(255, 151, 29, 1);
+
+  /* Chip */
+  --component-chip-primary: rgba(195, 104, 0, 1);
+
+  /* TextField */
+  --component-text-field-primary: rgba(195, 104, 0, 1);
+
+  /* Button */
+  --component-button-primary: rgba(195, 104, 0, 1);
+  --component-button-primary-contained-hover: rgba(195, 104, 0, 0.85);
+  --component-button-primary-outlined: rgba(195, 104, 0, 0.5);
+  --component-button-primary-active: rgba(195, 104, 0, 0.1);
+  /* ScrollBar  */
+  --system-global-scroll-bar-track: var(--system-global-background);
+  --system-global-scroll-bar-thumb: var(--core-magical-gray-40_40);
+  --system-global-scroll-bar-thumb-hover: var(--system-global-body_05);
+  /* Loader */
+  --component-loader-primary: rgba(195, 104, 0, 1);
+}
+
+html,
+[data-theme="light"] {
+  --system-global-background: rgba(229, 236, 241, 1);
+  --system-global-body: rgba(58, 70, 81, 1);
+  --system-global-body_05: rgba(58, 70, 81, 0.5);
+  --system-global-body_03: rgba(58, 70, 81, 0.3);
+  --system-global-body_01: rgba(58, 70, 81, 0.1);
+
+  --system-common-primary: rgba(255, 151, 29, 1);
+  --system-common-primary_05: rgba(255, 151, 29, 0.5);
+  --system-common-secondary: rgba(255, 255, 255, 1);
+  --system-common-emphasis: rgba(0, 0, 53, 1);
+  --system-common-selection: rgba(242, 60, 28, 1);
+  --system-common-error: rgba(142, 0, 74, 1);
+  --system-common-heading: rgba(34, 41, 49, 1);
+  --system-common-body: var(--system-global-body);
+  --system-common-body_05: var(--system-global-body_05);
+  --system-common-body_03: var(--system-global-body_03);
+  --system-common-body_01: var(--system-global-body_01);
+  --system-common-focus: rgba(35, 208, 255, 1);
+  --system-common-shadow: var(--core-shadow-base-dark-3),
+    var(--core-shadow-spread-dark-3);
+
+  /* Main Header */
+  --component-main-header-background: rgba(229, 236, 241, 0.4);
+  --component-main-header-input-background: rgba(225, 225, 225, 0.5);
+
+  /* Card */
+  --component-card-elevation-1: var(--core-elevation-light-1);
+  --component-card-elevation-2: var(--core-elevation-light-2);
+  --component-card-elevation-3: var(--core-elevation-light-3);
+  --component-card-elevation-solid: var(--core-whiteness);
+  --component-card-shadow-spread-1: var(--core-shadow-spread-light-1);
+  --component-card-shadow-spread-2: var(--core-shadow-spread-light-2);
+  --component-card-shadow-spread-3: var(--core-shadow-spread-light-3);
+  --component-card-shadow-base-1: var(--core-shadow-base-light-1);
+  --component-card-shadow-base-2: var(--core-shadow-base-light-2);
+  --component-card-shadow-base-3: var(--core-shadow-base-light-3);
+  --component-card-border: var(--core-magical-gray-10_25);
+  --component-card-surface-3: var(--core-magical-gray-00_40);
+}
+
+[data-theme="dark"] {
+  --system-global-background: rgba(9, 16, 21, 1);
+  --system-global-body: rgba(208, 217, 222, 1);
+  --system-global-body_05: rgba(208, 217, 222, 0.5);
+  --system-global-body_03: rgba(208, 217, 222, 0.3);
+  --system-global-body_01: rgba(208, 217, 222, 0.1);
+
+  --system-common-primary: rgba(0, 0, 53, 1);
+  --system-common-primary_05: rgba(0, 0, 53, 0.5);
+  --system-common-secondary: var(--system-common-body_01);
+  --system-common-emphasis: rgba(255, 255, 255, 1);
+  --system-common-selection: rgba(255, 204, 49, 1);
+  --system-common-error: rgba(236, 0, 124, 1);
+  --system-common-heading: rgba(255, 255, 255, 1);
+  --system-common-body: var(--system-global-body);
+  --system-common-body_05: var(--system-global-body_05);
+  --system-common-body_03: var(--system-global-body_03);
+  --system-common-body_01: var(--system-global-body_01);
+  --system-common-focus: rgba(181, 232, 37, 1);
+  --system-common-shadow: var(--core-shadow-base-light-2),
+    var(--core-shadow-spread-light-2);
+
+  /* Main Header */
+  --component-main-header-background: rgba(9, 16, 21, 0.4);
+  --component-main-header-input-background: rgba(87, 89, 91, 0.5);
+
+  /* Card */
+  --component-card-elevation-1: var(--core-elevation-dark-1);
+  --component-card-elevation-2: var(--core-elevation-dark-2);
+  --component-card-elevation-3: var(--core-elevation-dark-3);
+  --component-card-elevation-solid: var(--core-magical-gray-70);
+  --component-card-shadow-spread-1: var(--core-shadow-spread-dark-1);
+  --component-card-shadow-spread-2: var(--core-shadow-spread-dark-2);
+  --component-card-shadow-spread-3: var(--core-shadow-spread-dark-3);
+  --component-card-shadow-base-1: var(--core-shadow-base-dark-1);
+  --component-card-shadow-base-2: var(--core-shadow-base-dark-2);
+  --component-card-shadow-base-3: var(--core-shadow-base-dark-3);
+  --component-card-border: var(--core-magical-gray-40_25);
+  --component-card-surface-3: var(--core-elevation-dark-3);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] {
+    --system-global-background: rgba(9, 16, 21, 1);
+    --system-global-body: rgba(208, 217, 222, 1);
+    --system-global-body_05: rgba(208, 217, 222, 0.5);
+    --system-global-body_03: rgba(208, 217, 222, 0.3);
+    --system-global-body_01: rgba(208, 217, 222, 0.1);
+
+    --system-common-primary: rgba(195, 104, 0, 1);
+    --system-common-secondary: rgba(0, 0, 53, 1);
+    --system-common-emphasis: rgba(255, 255, 255, 1);
+    --system-common-selection: rgba(255, 204, 49, 1);
+    --system-common-error: rgba(236, 0, 124, 1);
+    --system-common-heading: rgba(255, 255, 255, 1);
+    --system-common-body: var(--system-global-body);
+    --system-common-body_05: var(--system-global-body_05);
+    --system-common-body_03: var(--system-global-body_03);
+    --system-common-body_01: var(--system-global-body_01);
+    --system-common-focus: rgba(181, 232, 37, 1);
+
+    /* Main Header */
+    --component-main-header-background: var(--core-magical-gray-40_10);
+    --component-main-header-input-background: rgba(87, 89, 91, 0.5);
+
+    /* Card */
+    --component-card-elevation-1: var(--core-elevation-dark-1);
+    --component-card-elevation-2: var(--core-elevation-dark-2);
+    --component-card-elevation-3: var(--core-elevation-dark-3);
+    --component-card-elevation-solid: var(--core-magical-gray-70);
+    --component-card-shadow-spread-1: var(--core-shadow-spread-dark-1);
+    --component-card-shadow-spread-2: var(--core-shadow-spread-dark-2);
+    --component-card-shadow-spread-3: var(--core-shadow-spread-dark-3);
+    --component-card-shadow-base-1: var(--core-shadow-base-dark-1);
+    --component-card-shadow-base-2: var(--core-shadow-base-dark-2);
+    --component-card-shadow-base-3: var(--core-shadow-base-dark-3);
+    --component-card-border: var(--core-magical-gray-40_25);
+    --component-card-surface-3: var(--core-elevation-dark-3);
+  }
+}
+
+/* Example dark - DO NOT USE */
+:root {
+  --a_globalBackground: rgba(9, 16, 21, 1);
+  --a_globalBody: rgba(208, 217, 222, 1);
+
+  --a_commonPrimary: rgba(108, 255, 201, 1);
+  --a_commonSecondary: rgba(0, 0, 53, 1);
+  --a_commonEmphasis: rgba(255, 255, 255, 1);
+  --a_commonSelection: rgba(181, 232, 37, 1);
+  --a_commonError: rgba(236, 0, 124, 1);
+  --a_commonHeading: rgba(255, 255, 255, 1);
+  --a_commonBody: var(--a_globalBody);
+  --a_commonFocus: rgba(255, 214, 0, 1);
+
+  --a_buttonPrimaryActive: rgba(65, 153, 121, 1);
+  --a_buttonSecondary: rgba(108, 255, 201, 0.1);
+  --a_buttonSecondaryActive: rgba(108, 255, 201, 0.25);
+  --a_buttonOnPrimaryActive: rgba(102, 102, 134, 1);
+}
+
+/* Example light - DO NOT USE */
+:root {
+  --a_globalBackground: rgba(229, 236, 241, 1);
+  --a_globalBody: rgba(58, 70, 81, 1);
+
+  --a_commonPrimary: rgba(0, 0, 53, 1);
+  --a_commonSecondary: rgba(255, 255, 255, 1);
+  --a_commonEmphasis: rgba(0, 0, 53, 1);
+  --a_commonSelection: rgba(161, 28, 242, 1);
+  --a_commonError: rgba(142, 0, 74, 1);
+  --a_commonHeading: rgba(34, 41, 49, 1);
+  --a_commonBody: var(--a_globalBody);
+  --a_commonFocus: rgba(35, 208, 255, 1);
+
+  --a_buttonPrimaryActive: rgba(102, 102, 134, 1);
+  --a_buttonSecondary: rgba(0, 0, 53, 0.1);
+  --a_buttonSecondaryActive: rgba(0, 0, 53, 0.25);
+  --a_buttonOnPrimaryActive: rgba(153, 153, 174, 1);
+}
