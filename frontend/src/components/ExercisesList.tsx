@@ -37,12 +37,10 @@ type ExercisesListProps = {
 const ExercisesList: React.FC<ExercisesListProps> = forwardRef(
   ({ search, filterBy }) => {
     const [currExercise, setCurrExercise] = useState<Exercise | null>(null);
-    const [isExerciseDetailsDrawerOpen, setIsExerciseDetailsDrawerOpen] =
-      useState(false);
+
     const { ref, inView } = useInView();
     const debouncedSearchTerm = useDebounce(search, 800);
     const debouncedFilterByTerm = useDebounce(filterBy, 800);
-    const mediumTheme = useMediaQuery("(min-width:450px)");
 
     const {
       error,
@@ -80,20 +78,6 @@ const ExercisesList: React.FC<ExercisesListProps> = forwardRef(
       <>
         {isSuccess && (
           <>
-            <ExerciseDetailsDrawer
-              open={isExerciseDetailsDrawerOpen}
-              onClose={() => setIsExerciseDetailsDrawerOpen(false)}
-              onOpen={() => setIsExerciseDetailsDrawerOpen(true)}
-              anchor={
-                mediumTheme
-                  ? document.documentElement.dir === "rtl"
-                    ? "right"
-                    : "left"
-                  : "bottom"
-              }
-              exercise={currExercise}
-              setIsExerciseDetailsDrawerOpen={setIsExerciseDetailsDrawerOpen}
-            />
             <List>
               {exercises?.pages.map((page) => {
                 return page.data?.map((exercise: Exercise, index: number) => {
@@ -103,22 +87,11 @@ const ExercisesList: React.FC<ExercisesListProps> = forwardRef(
                         innerRef={ref}
                         key={exercise._id}
                         exercise={exercise}
-                        onClick={() => {
-                          setCurrExercise(exercise);
-                          setIsExerciseDetailsDrawerOpen(true);
-                        }}
                       />
                     );
                   }
                   return (
-                    <ExerciseCard
-                      onClick={() => {
-                        setCurrExercise(exercise);
-                        setIsExerciseDetailsDrawerOpen(true);
-                      }}
-                      key={exercise._id}
-                      exercise={exercise}
-                    />
+                    <ExerciseCard key={exercise._id} exercise={exercise} />
                   );
                 });
               })}

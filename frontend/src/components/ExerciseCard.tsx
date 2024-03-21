@@ -4,10 +4,11 @@ import {
   CardProps,
   CardContent as MuiCardContent,
   CardMedia as MuiCardMedia,
+  useMediaQuery,
 } from "@mui/material";
 import { Card as CardOrigin, Skeleton } from "../libs";
 import { useEffect, useState } from "react";
-import { PreLoadImg } from ".";
+import { ExerciseDetailsDrawer, PreLoadImg } from ".";
 import { useImgPreLoad } from "../hooks";
 
 const Card = styled(CardOrigin)`
@@ -78,22 +79,42 @@ type ExerciseCardProps = {
   innerRef?: (node?: Element | null | undefined) => void;
 } & CardProps;
 
-const ExerciseCard: React.FC<ExerciseCardProps> = ({
-  exercise,
-  innerRef,
-  onClick,
-}) => {
+const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise, innerRef }) => {
+  const [isExerciseDetailsDrawerOpen, setIsExerciseDetailsDrawerOpen] =
+    useState(false);
   useImgPreLoad(exercise.gifEndFrameSrc);
+
+  const mediumTheme = useMediaQuery("(min-width:450px)");
+
   return (
-    <CardActionArea rel="preload" ref={innerRef}>
-      <Card onClick={onClick} key={exercise.name}>
-        <CardMedia image={exercise.gifStartFrameSrc}></CardMedia>
-        <CardContent>
-          <Name>{exercise.name}</Name>
-          <TargetMuscle>{exercise.target}</TargetMuscle>
-        </CardContent>
-      </Card>
-    </CardActionArea>
+    <>
+      <ExerciseDetailsDrawer
+        open={isExerciseDetailsDrawerOpen}
+        onClose={() => setIsExerciseDetailsDrawerOpen(false)}
+        onOpen={() => setIsExerciseDetailsDrawerOpen(true)}
+        anchor={
+          mediumTheme
+            ? document.documentElement.dir === "rtl"
+              ? "right"
+              : "left"
+            : "bottom"
+        }
+        exercise={exercise}
+        setIsExerciseDetailsDrawerOpen={setIsExerciseDetailsDrawerOpen}
+      />
+      <CardActionArea ref={innerRef}>
+        <Card
+          onClick={() => setIsExerciseDetailsDrawerOpen(true)}
+          key={exercise.name}
+        >
+          <CardMedia image={exercise.gifStartFrameSrc}></CardMedia>
+          <CardContent>
+            <Name>{exercise.name}</Name>
+            <TargetMuscle>{exercise.target}</TargetMuscle>
+          </CardContent>
+        </Card>
+      </CardActionArea>
+    </>
   );
 };
 

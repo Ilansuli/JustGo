@@ -109,7 +109,7 @@ const FloatingActionButton = styled(FloatingActionButtonOrigin)`
   margin-block-start: 1rem;
 `;
 type ExerciseDetailsDrawerProps = {
-  exercise: Exercise;
+  exercise: Exercise | null;
   setIsExerciseDetailsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
 } & SwipeableDrawerProps;
 
@@ -119,11 +119,18 @@ const ExerciseDetailsDrawer: React.FC<ExerciseDetailsDrawerProps> = ({
   setIsExerciseDetailsDrawerOpen,
   ...props
 }) => {
+  const theme = document.documentElement.dataset.theme;
+
   const [isGif, setIsGif] = useState(false);
   const [currTabIdx, setCurrTabIdx] = useState(0);
-  useImgPreLoad(exercise?.gifSrc);
+  useEffect(() => {
+    return () => {
+      console.log(isGif);
+    };
+  }, []);
 
-  const theme = document.documentElement.dataset.theme;
+  if (exercise) useImgPreLoad(exercise.gifSrc);
+
   const handleCurrTabChange = (
     event: React.SyntheticEvent,
     newValue: number
