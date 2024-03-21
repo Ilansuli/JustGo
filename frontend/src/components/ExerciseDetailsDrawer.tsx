@@ -12,10 +12,11 @@ import {
 } from "../libs";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
+import { useImgPreLoad } from "../hooks";
 
 const SwipeableDrawer = styled(SwipeableDrawerOrigin)`
   .MuiDrawer-paper {
-    min-height: 92dvh;
+    height: 92dvh;
     border-top-right-radius: 5%;
     border-top-left-radius: 5%;
     padding-block: 1rem;
@@ -50,13 +51,24 @@ const ExerciseGifPreview = styled.section`
 const GifWrapper = styled.div`
   width: 50%;
 `;
+type ImgWrapperProps = {
+  src: string | undefined;
+};
 
-const ImgWrapper = styled.div``;
+const ImgWrapper = styled.div<ImgWrapperProps>`
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: cover;
+  background-position: top, center;
+  background-repeat: no-repeat;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  mix-blend-mode: ${({ theme }) => (theme === "light" ? "multiply" : "unset")};
+`;
 
 const Img = styled.img`
   mix-blend-mode: ${({ theme }) => (theme === "light" ? "multiply" : "unset")};
 `;
-const ExerciseGif = styled(Img)`
+const ExerciseGif = styled(ImgWrapper)`
   border-radius: 10px;
 `;
 const ExerciseStartImg = styled(Img)`
@@ -97,7 +109,7 @@ const FloatingActionButton = styled(FloatingActionButtonOrigin)`
   margin-block-start: 1rem;
 `;
 type ExerciseDetailsDrawerProps = {
-  exercise: Exercise | null;
+  exercise: Exercise;
   setIsExerciseDetailsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>;
 } & SwipeableDrawerProps;
 
@@ -109,6 +121,7 @@ const ExerciseDetailsDrawer: React.FC<ExerciseDetailsDrawerProps> = ({
 }) => {
   const [isGif, setIsGif] = useState(false);
   const [currTabIdx, setCurrTabIdx] = useState(0);
+  useImgPreLoad(exercise?.gifSrc);
 
   const theme = document.documentElement.dataset.theme;
   const handleCurrTabChange = (
@@ -117,6 +130,7 @@ const ExerciseDetailsDrawer: React.FC<ExerciseDetailsDrawerProps> = ({
   ) => {
     setCurrTabIdx(newValue);
   };
+
   return (
     <SwipeableDrawer sx={sx as any} {...props}>
       <Tabs
@@ -137,18 +151,18 @@ const ExerciseDetailsDrawer: React.FC<ExerciseDetailsDrawerProps> = ({
               </GifWrapper>
             ) : (
               <>
-                <ImgWrapper>
-                  <ExerciseStartImg
-                    theme={theme}
-                    src={exercise?.gifStartFrameSrc}
-                  />
-                </ImgWrapper>
-                <ImgWrapper>
-                  <ExerciseEndImg
-                    theme={theme}
-                    src={exercise?.gifEndFrameSrc}
-                  />
-                </ImgWrapper>
+                <ExerciseStartImg
+                  loading="lazy"
+                  theme={theme}
+                  src={exercise?.gifStartFrameSrc}
+                  decoding="async"
+                ></ExerciseStartImg>
+                <ExerciseEndImg
+                  loading="lazy"
+                  decoding="async"
+                  theme={theme}
+                  src={exercise?.gifEndFrameSrc}
+                ></ExerciseEndImg>
               </>
             )}
             {isGif ? (

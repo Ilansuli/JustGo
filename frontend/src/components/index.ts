@@ -5,3 +5,4 @@ export { default as ExerciseCard } from "./ExerciseCard";
 export { default as ExerciseHeader } from "./ExerciseHeader";
 export { default as ExercisesFilterDrawer } from "./ExercisesFilterDrawer";
 export { default as ExerciseDetailsDrawer } from "./ExerciseDetailsDrawer";
+export { default as PreLoadImg } from "./PreLoadImg";

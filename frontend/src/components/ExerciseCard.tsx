@@ -6,6 +6,9 @@ import {
   CardMedia as MuiCardMedia,
 } from "@mui/material";
 import { Card as CardOrigin, Skeleton } from "../libs";
+import { useEffect, useState } from "react";
+import { PreLoadImg } from ".";
+import { useImgPreLoad } from "../hooks";
 
 const Card = styled(CardOrigin)`
   display: grid;
@@ -69,6 +72,7 @@ const Name = styled.h3`
 `;
 
 const TargetMuscle = styled.p``;
+
 type ExerciseCardProps = {
   exercise: Exercise;
   innerRef?: (node?: Element | null | undefined) => void;
@@ -79,8 +83,9 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
   innerRef,
   onClick,
 }) => {
+  useImgPreLoad(exercise.gifEndFrameSrc);
   return (
-    <CardActionArea ref={innerRef}>
+    <CardActionArea rel="preload" ref={innerRef}>
       <Card onClick={onClick} key={exercise.name}>
         <CardMedia image={exercise.gifStartFrameSrc}></CardMedia>
         <CardContent>
