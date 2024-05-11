@@ -30,12 +30,12 @@ const CustomButton = styled(MuiButton)`
   /* outlined */
   &.MuiButton-outlined {
     color: var(--component-button-primary);
-    border: 2px solid var(--component-button-primary-border);
-    border-radius: unset;
+    border: 1px solid var(--component-button-primary-border);
+    /* border-radius: unset; */
     &:hover {
       background-color: var(--component-button-primary);
       color: #fff;
-      border: 2px solid var(--component-button-primary-border);
+      border: 1px solid var(--component-button-primary-border);
     }
     &:disabled {
       opacity: var(--system-opacity-disabled);

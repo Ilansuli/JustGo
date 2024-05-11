@@ -10,5 +10,4 @@ export { default as Loader } from "./Loader";
 export { default as Skeleton } from "./Skeleton";
 export { default as Chip } from "./Chip";
 export { default as SwipeableDrawer } from "./SwipeableDrawer";
-export { default as FloatingActionButton } from "./FloatingActionButton";
 export { default as Tabs } from "./Tabs";

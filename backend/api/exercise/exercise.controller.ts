@@ -1,6 +1,6 @@
 import { loggerService } from "../../services/logger.service";
 import { Request, Response } from "express";
-import { exercisesQuery, getById } from "./exercise.service";
+import { add, exercisesQuery, getById } from "./exercise.service";
 
 export async function getExercises(req: Request, res: Response) {
   try {
@@ -32,7 +32,20 @@ export async function getExerciseById(req: Request, res: Response) {
     const exercise = await getById(exerciseId);
     res.json(exercise);
   } catch (err) {
-    loggerService.error("Failed to get station", err);
-    res.status(500).send({ err: "Failed to get station" });
+    loggerService.error("Failed to get exercise", err);
+    res.status(500).send({ err: "Failed to get exercise" });
+  }
+}
+
+export async function addExercise(req, res) {
+  const { loggedinUser } = req;
+  try {
+    const exercise = req.body;
+    exercise.owner = loggedinUser;
+    const addedExercise = await add(exercise);
+    res.json(addedExercise);
+  } catch (err) {
+    loggerService.error("Failed to add exercise", err);
+    res.status(500).send({ err: "Failed to add exercise" });
   }
 }

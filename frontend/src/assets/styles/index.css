@@ -5,9 +5,9 @@
 *::after {
   box-sizing: border-box;
   /* Firefox Scrollbar */
-  scrollbar-width: thin;
+  /* scrollbar-width: thin;
   scrollbar-color: var(--system-global-scroll-bar-thumb)
-    var(--system-global-scroll-bar-track);
+    var(--system-global-scroll-bar-track); */
 }
 
 /* Webkit-based browsers (Chrome, Safari) */
@@ -24,7 +24,7 @@
   border-radius: var(--core-size-micro);
 }
 
-/* Handle on hover */
+/* Handle on hover*/
 *::-webkit-scrollbar-thumb:hover {
   background: var(--system-global-scroll-bar-thumb-hover);
 }

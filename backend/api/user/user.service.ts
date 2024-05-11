@@ -1,22 +1,22 @@
 import { Document, ObjectId, WithId } from "mongodb";
 import { getCollection } from "../../services/db.service";
 import { loggerService } from "../../services/logger.service";
-import { Exercise } from "../../types";
+import { User } from "../../types";
 
-export async function exercisesQuery(
+export async function usersQuery(
   filterBy: { [key: string]: any },
   sortBy: { [key: string]: any } = { name: 1 }
 ) {
   try {
-    const collection = await getCollection("exercise");
+    const collection = await getCollection("user");
     const criteria = _buildCriteria(filterBy);
-    var exercises = await collection?.find(criteria).sort(sortBy).toArray();
+    var users = await collection?.find(criteria).sort(sortBy).toArray();
     if (filterBy.pageParam && filterBy.limit) {
-      return await _getPage(filterBy.pageParam, filterBy.limit, exercises);
+      return await _getPage(filterBy.pageParam, filterBy.limit, users);
     }
-    return exercises;
+    return users;
   } catch (err) {
-    loggerService.error("cannot find exercises", err);
+    loggerService.error("cannot find users", err);
     throw err;
   }
 }
@@ -49,7 +49,7 @@ async function _getPage(
   const endIdx = pageParam * limit;
 
   const page: {
-    data: Exercise[] | WithId<Document>[];
+    data: User[] | WithId<Document>[];
     nextId: number | null;
     previousId: number | null;
   } = { data: [], nextId: 0, previousId: 0 };
@@ -60,25 +60,13 @@ async function _getPage(
   return page;
 }
 
-export async function getById(exerciseId: string) {
+export async function getById(userId) {
   try {
-    const collection = await getCollection("exercise");
-    const exercise = collection.findOne({ _id: new ObjectId(exerciseId) });
-    return exercise;
+    const collection = await getCollection("user");
+    const user = collection.findOne({ _id: new ObjectId(userId) });
+    return user;
   } catch (err) {
-    loggerService.error(`while finding exercise ${exerciseId}`, err);
-    throw err;
-  }
-}
-
-export async function add(exercise: Exercise) {
-  try {
-    const collection = await getCollection("exercise");
-    const { insertedId } = await collection.insertOne(exercise);
-    const savedExercise = { _id: insertedId, ...exercise };
-    return savedExercise;
-  } catch (err) {
-    loggerService.error("cannot insert exercise", err);
+    loggerService.error(`while finding user ${userId}`, err);
     throw err;
   }
 }

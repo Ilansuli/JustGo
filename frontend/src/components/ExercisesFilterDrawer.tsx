@@ -3,18 +3,11 @@ import {
   Chip as ChipOrigin,
   IconButton as IconButtonOrigin,
   SwipeableDrawer as SwipeableDrawerOrigin,
-  FloatingActionButton as FloatingActionButtonOrigin,
+  Button as ButtonOrigin,
 } from "../libs";
 import styled from "@emotion/styled";
 
-const SwipeableDrawer = styled(SwipeableDrawerOrigin)`
-  .MuiDrawer-paper {
-    height: 92dvh;
-    border-top-right-radius: 5%;
-    border-top-left-radius: 5%;
-    padding-block: 2rem;
-  }
-`;
+const SwipeableDrawer = styled(SwipeableDrawerOrigin)``;
 
 const Header = styled.header``;
 
@@ -44,16 +37,16 @@ const MusclesChip = styled(ChipOrigin)`
 const EquipmentsWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--core-spacing-mini);
 `;
 
 const EquipmentChip = styled(ChipOrigin)`
-  padding-block: 1.5rem;
+  padding-block: var(--core-spacing-xs);
   padding-inline-start: var(--system-common-gap-small);
   font-weight: bold;
   flex-direction: row-reverse;
   justify-content: space-between;
-  padding-inline-end: 1.5rem;
+  padding-inline-end: var(--core-spacing-xs);
   gap: var(--system-common-gap);
   svg {
     width: 40px;
@@ -62,11 +55,11 @@ const EquipmentChip = styled(ChipOrigin)`
   }
 `;
 
-const FloatingActionButton = styled(FloatingActionButtonOrigin)`
+const FloatingActionButton = styled(ButtonOrigin)`
   position: sticky;
   bottom: 0;
   width: 100%;
-  margin-block-start: 1rem;
+  margin-block-start: var(--core-spacing-default);
 `;
 
 type ExercisesFilterDrawerProps = {
@@ -174,7 +167,7 @@ const ExercisesFilterDrawer: React.FC<ExercisesFilterDrawerProps> = ({
       </EquipmentsWrapper>
       <FloatingActionButton
         onClick={() => setIsFilterDrawerOpen(false)}
-        variant="extended"
+        variant="contained"
       >
         DONE
       </FloatingActionButton>

@@ -7,6 +7,9 @@ const CustomFab = styled(MuiFab)`
   &:hover {
     background-color: var(--component-fab-primary-hover);
   }
+  &:disabled {
+    opacity: var(--system-opacity-disabled);
+  }
 `;
 
 // There's an issue with `sx` in the current version of @mui/material

@@ -120,7 +120,7 @@ const ExerciseHeader: React.FC<ExerciseHeaderProps> = ({
     return filterBy.equipments.includes(equipmentName);
   };
 
-  const handleMuscle = (muscleName: string) => {
+  const handleMuscle = (muscleName: Muscle) => {
     isMuscleIncluded(muscleName)
       ? setFilterBy((prev) => ({
           ...prev,
@@ -132,7 +132,7 @@ const ExerciseHeader: React.FC<ExerciseHeaderProps> = ({
         }));
   };
 
-  const handleEquipment = (equipmentName: string) => {
+  const handleEquipment = (equipmentName: Equipment["name"]) => {
     isEquipmentIncluded(equipmentName)
       ? setFilterBy((prev) => ({
           ...prev,

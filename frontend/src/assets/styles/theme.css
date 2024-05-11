@@ -28,10 +28,6 @@
   /* Tabs */
   --component-tab-selected: rgba(195, 104, 0, 1);
 
-  /* FloatingActionButton */
-  --component-fab-primary: var(--component-button-primary);
-  --component-fab-primary-hover: rgba(255, 151, 29, 1);
-
   /* Chip */
   --component-chip-primary: rgba(195, 104, 0, 1);
 
@@ -43,6 +39,7 @@
   --component-button-primary-contained-hover: rgba(195, 104, 0, 0.85);
   --component-button-primary-outlined: rgba(195, 104, 0, 0.5);
   --component-button-primary-active: rgba(195, 104, 0, 0.1);
+  --component-button-primary-border: var(--component-button-primary);
   /* ScrollBar  */
   --system-global-scroll-bar-track: var(--system-global-background);
   --system-global-scroll-bar-thumb: var(--core-magical-gray-40_40);

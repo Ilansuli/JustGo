@@ -1,11 +1,5 @@
 import styled from "@emotion/styled";
-import {
-  Button as ButtonOrigin,
-  Container as ContainerOrigin,
-  IconButton as IconButtonOrigin,
-  TextField as TextFieldOrigin,
-  FloatingActionButton as FloatingActionButtonOrigin,
-} from "../libs";
+import { Button as ButtonOrigin, Container as ContainerOrigin } from "../libs";
 import {
   AssistedIcon,
   BandIcon,
@@ -27,21 +21,27 @@ import {
 } from "../assets/icons/equipments";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
-import { ExerciseHeader, ExercisesList } from "../components";
+import {
+  AddExerciseDrawer,
+  ExerciseHeader,
+  ExercisesList,
+} from "../components";
 import { Add } from "@mui/icons-material";
 
 const Wrapper = styled.section`
   min-height: 100dvh;
 `;
 
-const FloatingActionButton = styled(FloatingActionButtonOrigin)`
+const FloatingActionButton = styled(ButtonOrigin)`
   position: fixed;
   bottom: 70px;
   right: 10px;
+  border-radius: 50%;
+  padding: 1rem 1rem;
+  min-width: 56px;
   @media (min-width: 450px) {
-    /* bottom: 30px;
-    right: 23px; */
-    gap: 0.5rem;
+    border-radius: 10px;
+    gap: var(--core-spacing-mini);
   }
   @media (min-width: 700px) {
     bottom: 30px;
@@ -58,6 +58,9 @@ const ExercisesPage: React.FC = ({}) => {
     muscles: [],
     equipments: [],
   });
+  const [isAddExerciseDrawerOpen, setIsAddExerciseDrawerOpen] =
+    useState<boolean>(false);
+
   const mediumTheme = useMediaQuery("(min-width:450px)");
 
   const muscles = [
@@ -115,7 +118,11 @@ const ExercisesPage: React.FC = ({}) => {
           //MOBILE
           <>
             <ExercisesList filterBy={filterBy} search={search} />
-            <FloatingActionButton>
+
+            <FloatingActionButton
+              onClick={() => setIsAddExerciseDrawerOpen(true)}
+              variant="contained"
+            >
               <Add />
             </FloatingActionButton>
           </>
@@ -125,13 +132,33 @@ const ExercisesPage: React.FC = ({}) => {
             <ContainerOrigin>
               <ExercisesList filterBy={filterBy} search={search} />
             </ContainerOrigin>
-            <FloatingActionButton variant="extended">
+            <FloatingActionButton
+              onClick={() => setIsAddExerciseDrawerOpen(true)}
+              variant="contained"
+            >
               <Add />
               Add Exercise
             </FloatingActionButton>
           </>
         )}
       </Wrapper>
+      <AddExerciseDrawer
+        open={isAddExerciseDrawerOpen}
+        onClose={() => {
+          setIsAddExerciseDrawerOpen(false);
+        }}
+        onOpen={() => setIsAddExerciseDrawerOpen(true)}
+        anchor={
+          mediumTheme
+            ? document.documentElement.dir === "rtl"
+              ? "right"
+              : "left"
+            : "bottom"
+        }
+        muscles={muscles}
+        equipments={equipments}
+        setIsAddExerciseDrawerOpen={setIsAddExerciseDrawerOpen}
+      />
     </>
   );
 };
