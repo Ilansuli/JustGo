@@ -1,10 +1,12 @@
 import { styled } from "@mui/system";
-import { Link as TanstackLink } from "@tanstack/react-router";
+import { Link as TanstackLink, LinkProps } from "@tanstack/react-router";
+import { forwardRef } from "react";
 
 const CustomLink = styled(TanstackLink)`
   text-decoration: none;
 `;
-//@ts-ignore
-const Link = ({ ...props }) => <CustomLink {...props} />;
+const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
+  <CustomLink {...props} ref={ref as any} />
+));
 
 export default Link;

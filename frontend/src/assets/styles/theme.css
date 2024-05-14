@@ -99,7 +99,7 @@ html,
 
   --system-common-primary: rgba(0, 0, 53, 1);
   --system-common-primary_05: rgba(0, 0, 53, 0.5);
-  --system-common-secondary: var(--system-common-body_01);
+  --system-common-secondary: var(--system-common-body);
   --system-common-emphasis: rgba(255, 255, 255, 1);
   --system-common-selection: rgba(255, 204, 49, 1);
   --system-common-error: rgba(236, 0, 124, 1);

@@ -6,13 +6,13 @@ import {
   BottomNavigationActionOwnProps,
 } from "@mui/material";
 import { Link } from ".";
+import { ToPathOption } from "@tanstack/react-router";
 
 type CustomBottomNavigationProps = {
-  icons: (BottomNavigationActionOwnProps & { path: string })[];
+  icons: (BottomNavigationActionOwnProps & { path: ToPathOption })[];
 } & BottomNavigationProps;
 
 const StyledBottomNavigation = styled(MuiBottomNavigation)`
-  //set background in parent cmp's wrapper
   .MuiBottomNavigationAction-root {
     padding: unset;
     min-width: unset;
@@ -34,10 +34,10 @@ const BottomNavigation: React.FC<CustomBottomNavigationProps> = ({
     {icons.map(({ icon, label, path }) => (
       <BottomNavigationAction
         component={Link}
-        to={path}
         label={label}
         icon={icon}
         key={path}
+        to={path}
       ></BottomNavigationAction>
     ))}
   </StyledBottomNavigation>

@@ -19,5 +19,7 @@ export const fetchExercises = async (
 };
 
 export const addExercise = async (exercise: Exercise) => {
-  return await httpService.post("exercise");
+  const addedExercise = await httpService.post("exercise", exercise);
+  console.log(addedExercise);
+  return addedExercise;
 };

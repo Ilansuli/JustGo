@@ -259,7 +259,7 @@ const ExerciseDetailsDrawer: React.FC<ExerciseDetailsDrawerProps> = ({
           <ExecutionWrapper>
             <Title>EXECUTION</Title>
             <ExecutionDetailsList>
-              {exercise?.instructions.map((sentence: string, index) => {
+              {exercise?.instructions?.map((sentence: string, index) => {
                 return (
                   <ExecutionDetailsItem key={index}>
                     <Number>{index + 1}</Number>

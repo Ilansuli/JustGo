@@ -38,10 +38,8 @@ export async function getExerciseById(req: Request, res: Response) {
 }
 
 export async function addExercise(req, res) {
-  const { loggedinUser } = req;
   try {
     const exercise = req.body;
-    exercise.owner = loggedinUser;
     const addedExercise = await add(exercise);
     res.json(addedExercise);
   } catch (err) {

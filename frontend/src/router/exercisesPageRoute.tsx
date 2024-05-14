@@ -4,7 +4,7 @@ import { ExercisesPage } from "../pages";
 
 const exercisesPageRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: "/",
+  path: "/exercises",
   component: ExercisesPage,
 });
 

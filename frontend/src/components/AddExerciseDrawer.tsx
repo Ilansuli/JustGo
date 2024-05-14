@@ -219,7 +219,7 @@ const AddExerciseDrawer: React.FC<AddExerciseDrawerProps> = ({
   const handleAddExercise = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     /////CHANGE THE OPTION FOR MULTIPLE MUSCLES AND EQs ,ONLY ONE IS PERMMITED AND IT WILL SOLVE EVERYTHING. WE DONT WANT THEM AS ARRAY
-    addExerciseMutation.mutate({ newExerciseFormData });
+    addExerciseMutation.mutate(newExerciseFormData);
     console.log("Form submitted:", newExerciseFormData);
   };
 

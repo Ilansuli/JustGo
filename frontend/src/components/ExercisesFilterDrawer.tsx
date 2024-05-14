@@ -51,7 +51,7 @@ const EquipmentChip = styled(ChipOrigin)`
   svg {
     width: 40px;
     height: 40px;
-    fill: var(--system-global-body);
+    /* fill: var(--system-global-body); */
   }
 `;
 

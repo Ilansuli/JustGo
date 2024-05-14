@@ -35,106 +35,105 @@ type ExercisesListProps = {
   };
 };
 
-const ExercisesList: React.FC<ExercisesListProps> = forwardRef(
-  ({ search, filterBy }) => {
-    const [currExercise, setCurrExercise] = useState<Exercise | null>(null);
-    const [isExerciseDetailsDrawerOpen, setIsExerciseDetailsDrawerOpen] =
-      useState(false);
-    //isGif used inside the details drawer
-    const [isGif, setIsGif] = useState<boolean>(false);
-    const { ref, inView } = useInView();
-    const debouncedSearchTerm = useDebounce(search, 800);
-    const debouncedFilterByTerm = useDebounce(filterBy, 800);
-    const mediumTheme = useMediaQuery("(min-width:450px)");
+const ExercisesList: React.FC<ExercisesListProps> = ({ search, filterBy }) => {
+  const [currExercise, setCurrExercise] = useState<Exercise | null>(null);
+  const [isExerciseDetailsDrawerOpen, setIsExerciseDetailsDrawerOpen] =
+    useState(false);
+  //isGif used inside the details drawer
+  const [isGif, setIsGif] = useState<boolean>(false);
+  const { ref, inView } = useInView();
+  const debouncedSearchTerm = useDebounce(search, 800);
+  const debouncedFilterByTerm = useDebounce(filterBy, 800);
+  const mediumTheme = useMediaQuery("(min-width:450px)");
 
-    const {
-      error,
-      status,
-      data: exercises,
-      hasNextPage,
-      isSuccess,
-      fetchNextPage,
-    } = useInfiniteQuery({
-      getNextPageParam: (lastPage) => lastPage.nextId,
-      queryKey: ["exercise", debouncedSearchTerm, debouncedFilterByTerm],
-      initialPageParam: 1,
-      queryFn: async ({ pageParam }: { pageParam: number }) => {
-        return await fetchExercises(search, filterBy, pageParam, 50);
-      },
-    });
+  const {
+    error,
+    status,
+    data: exercises,
+    hasNextPage,
+    isSuccess,
+    fetchNextPage,
+  } = useInfiniteQuery({
+    getNextPageParam: (lastPage) => lastPage.nextId,
+    queryKey: ["exercise", debouncedSearchTerm, debouncedFilterByTerm],
+    initialPageParam: 1,
+    queryFn: async ({ pageParam }: { pageParam: number }) => {
+      return await fetchExercises(search, filterBy, pageParam, 50);
+    },
+  });
 
-    useEffect(() => {
-      if (!currExercise) {
-        //init isGif state for not staying in isGif mode inside the details drawer
-        setIsGif(false);
-      }
-    }, [currExercise]);
+  useEffect(() => {
+    if (!currExercise) {
+      //init isGif state for not staying in isGif mode inside the details drawer
+      setIsGif(false);
+    }
+  }, [currExercise]);
 
-    useEffect(() => {
-      if (inView && hasNextPage) {
-        fetchNextPage();
-      }
-    }, [inView, hasNextPage, fetchNextPage]);
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
 
-    if (status === "error") return <h1>Error:{error?.message}</h1>;
+  if (status === "error") return <h1>Error:{error?.message}</h1>;
 
-    if (status === "pending") return <Loader height="50dvh" />;
+  if (status === "pending") return <Loader height="50dvh" />;
 
-    return (
-      <>
-        {isSuccess && (
-          <List>
-            {exercises?.pages.map((page) => {
-              return page.data?.map((exercise: Exercise, index: number) => {
-                if (page.data.length == index + 1) {
-                  return (
-                    <ExerciseCard
-                      innerRef={ref}
-                      key={exercise._id}
-                      exercise={exercise}
-                      onClick={() => {
-                        setCurrExercise(exercise);
-                        setIsExerciseDetailsDrawerOpen(true);
-                      }}
-                    />
-                  );
-                }
+  return (
+    <>
+      {isSuccess && (
+        <List>
+          {exercises?.pages.map((page) => {
+            return page.data?.map((exercise: Exercise, index: number) => {
+              if (page.data.length == index + 1) {
                 return (
                   <ExerciseCard
+                    innerRef={ref}
+                    key={exercise._id}
+                    exercise={exercise}
                     onClick={() => {
                       setCurrExercise(exercise);
                       setIsExerciseDetailsDrawerOpen(true);
                     }}
-                    key={exercise._id}
-                    exercise={exercise}
                   />
                 );
-              });
-            })}
-          </List>
-        )}
-        {hasNextPage && <Loader height="20dvh" />}
-        <ExerciseDetailsDrawer
-          open={isExerciseDetailsDrawerOpen}
-          onClose={() => {
-            setIsExerciseDetailsDrawerOpen(false);
-            setCurrExercise(null);
-          }}
-          onOpen={() => setIsExerciseDetailsDrawerOpen(true)}
-          anchor={
-            mediumTheme
-              ? document.documentElement.dir === "rtl"
-                ? "right"
-                : "left"
-              : "bottom"
-          }
-          exercise={currExercise}
-          setIsExerciseDetailsDrawerOpen={setIsExerciseDetailsDrawerOpen}
-          isGif={isGif}
-          setIsGif={setIsGif}
-        />
-      </>
-    );
-  }
-);
+              }
+              return (
+                <ExerciseCard
+                  onClick={() => {
+                    setCurrExercise(exercise);
+                    setIsExerciseDetailsDrawerOpen(true);
+                  }}
+                  key={exercise._id}
+                  exercise={exercise}
+                />
+              );
+            });
+          })}
+        </List>
+      )}
+      {hasNextPage && <Loader height="20dvh" />}
+      <ExerciseDetailsDrawer
+        open={isExerciseDetailsDrawerOpen}
+        onClose={() => {
+          setIsExerciseDetailsDrawerOpen(false);
+          setCurrExercise(null);
+        }}
+        onOpen={() => setIsExerciseDetailsDrawerOpen(true)}
+        anchor={
+          mediumTheme
+            ? document.documentElement.dir === "rtl"
+              ? "right"
+              : "left"
+            : "bottom"
+        }
+        exercise={currExercise}
+        setIsExerciseDetailsDrawerOpen={setIsExerciseDetailsDrawerOpen}
+        isGif={isGif}
+        setIsGif={setIsGif}
+      />
+    </>
+  );
+};
+
 export default ExercisesList;

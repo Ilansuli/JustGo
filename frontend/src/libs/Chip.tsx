@@ -7,10 +7,19 @@ const CustomChip = styled(MuiChip)`
     transition: all 0.2s;
     margin-inline: 0.2rem;
     margin-block: 0.1rem;
+    svg {
+      fill: var(--system-global-body);
+    }
     .MuiChip-label {
     }
     &.MuiChip-filled {
       background-color: var(--component-chip-primary);
+      color: var(--system-common-secondary);
+      svg {
+        * {
+          fill: var(--system-common-secondary);
+        }
+      }
     }
     &.MuiChip-outlined {
       border-color: var(--component-chip-primary);
